@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Productos</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+<body>
+
+    <div class="container">
+        <h1 class="text-center my-4">Productos</h1>
+
+        <a class="btn btn-primary" role="button" href="/productos/crear">Crear</a>
+        <a class="btn btn-outline-primary" role="button" href="/productos/">Regresar</a>
+
+
+
+        <table class="table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Estatus</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
+                <tr th:each="prod : ${productos}">
+                    <td th:text="${prod.idProducto}"></td>
+                    <td th:text="${prod.nombre}"></td>
+                    <td th:text="${prod.cantidad}"></td>
+                    <td th:text="${prod.estatus}"
+                        th:classappend="${prod.estatus == 'Activo'} ? 'text-success fw-bold' : 'text-danger fw-bold'">
+
+                    </td>
+                    <td style="white-space:nowrap">
+                        <div th:if="${prod.estatus == 'Activo'}">
+                            <a class="btn btn-primary btn-sm"
+                                th:href="@{/productos/agregar(id=${prod.idProducto})}"
+                            >
+                                Entrada
+                            </a>
+                            <a class="btn btn-danger btn-sm"
+                               th:href="@{/productos/baja(id=${prod.idProducto})}"
+                               onclick="return confirm('Estas seguro de dar de baja el producto?')"
+                            >
+                                Eliminar
+                            </a>
+                        </div>
+                        <div th:if="${prod.estatus == 'Baja'}">
+                            <a class="btn btn-primary btn-sm"
+                               th:href="@{/productos/alta(id=${prod.idProducto})}"
+                            >
+                                Dar de Alta
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+</body>
+</html>
