@@ -6,6 +6,7 @@
 • DBMS utilizado y su versión -> MySQL Workbench 8.0 CE
 
 • Lista de pasos para correr su aplicación
+  * clonar la rama master para obtener toda la aplicación *
   * Para el motor de BD usé Xampp *
     1) debe de ejecutarse el script para poder generar el DDL de la BD.
     2) una vez con el servicio de MySQL corriendo en Xampp, nos vamos al archivo application.properties del directorio src/main/resources/
